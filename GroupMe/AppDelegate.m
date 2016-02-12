@@ -45,13 +45,13 @@
                 
                 NSMutableArray *messages;
                 
-                if(counter < 3) {
+                if(counter == 0) {
                     NSData *resultData = [NSURLConnection sendSynchronousRequest:[self.groupMeAPIManager getMessagesForGroup:group[@"id"]] returningResponse:&urlResponse error:&error];
                     NSDictionary *messagesArray = [NSJSONSerialization JSONObjectWithData:resultData options:kNilOptions error:&error];
                     
                     NSArray *messagesT = [messagesArray objectForKey:@"response"][@"messages"];
                     messages = [NSMutableArray arrayWithArray:messagesT];
-                }
+                 }
                 else {
                     messages = [[NSMutableArray alloc] init];
                 }
