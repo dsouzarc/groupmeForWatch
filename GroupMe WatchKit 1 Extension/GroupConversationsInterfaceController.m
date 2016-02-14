@@ -52,7 +52,6 @@
         if(showChatInterface) {
             NSDictionary *context = @{@"id": groupID, @"messages": self.messageForChatID[groupID], @"myName": self.myName};
             [self presentControllerWithName:@"GroupChatInterfaceController" context:context];
-            NSLog(@"GOT: %ld", ((NSMutableArray*)self.messageForChatID[groupID]).count);
         }
         return;
     }
@@ -170,14 +169,11 @@
     [self.loadImagesQueue cancelAllOperations];
     
     NSDictionary *selectedGroup = self.groups[rowIndex];
-    NSLog(@"We got the click");
     [self updateChatForGroupID:selectedGroup[@"id"] showChatInterface:YES];
 }
 
 - (void)willActivate {
     [super willActivate];
-    
-    NSLog(@"WE GOT: %@", self.groups);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
         
@@ -201,8 +197,6 @@
             
             self.groups = groups;
             self.myName = response[@"myName"];
-            
-            NSLog(@"NOW WE HAVE: %@", groups);
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
                 [self postSetupTable];

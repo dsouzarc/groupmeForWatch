@@ -111,8 +111,6 @@
     else if([userInfo[@"action"] isEqualToString:@"getGroupChatMessages"]) {
         NSString *groupChatID = userInfo[@"groupID"];
         
-        NSLog(@"GETTING MESSAGES HERE");
-        
         NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getMessagesForGroup:groupChatID] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
             NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
