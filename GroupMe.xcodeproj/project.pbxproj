@@ -155,6 +155,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94B5EC011C70613100B2E13E /* Interface Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				94B5EC051C70615600B2E13E /* Group Chats */,
+				94B5EC061C70616100B2E13E /* Group Conversation */,
+			);
+			name = "Interface Controllers";
+			sourceTree = "<group>";
+		};
+		94B5EC021C70613C00B2E13E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD4791C700F0F0008F7E8 /* Constants.h */,
+				94BCD47A1C700F0F0008F7E8 /* Constants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		94B5EC031C70614300B2E13E /* Auxillary */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */,
+				94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */,
+				94BCD44E1C700C7F0008F7E8 /* NotificationController.h */,
+				94BCD44F1C700C7F0008F7E8 /* NotificationController.m */,
+			);
+			name = Auxillary;
+			sourceTree = "<group>";
+		};
+		94B5EC041C70614A00B2E13E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94B5EC071C70616E00B2E13E /* Group Row */,
+				94B5EC081C70617400B2E13E /* My Messages */,
+				94B5EC091C70617C00B2E13E /* Other Person's Messages */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		94B5EC051C70615600B2E13E /* Group Chats */ = {
+			isa = PBXGroup;
+			children = (
+				94482C6B1C701EBD0007AA9F /* GroupChatInterfaceController.h */,
+				94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */,
+			);
+			name = "Group Chats";
+			sourceTree = "<group>";
+		};
+		94B5EC061C70616100B2E13E /* Group Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */,
+				94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */,
+			);
+			name = "Group Conversation";
+			sourceTree = "<group>";
+		};
+		94B5EC071C70616E00B2E13E /* Group Row */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD46F1C700CF90008F7E8 /* GroupRowView.h */,
+				94BCD4701C700CF90008F7E8 /* GroupRowView.m */,
+			);
+			name = "Group Row";
+			sourceTree = "<group>";
+		};
+		94B5EC081C70617400B2E13E /* My Messages */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD4711C700CF90008F7E8 /* MyMessagesView.h */,
+				94BCD4721C700CF90008F7E8 /* MyMessagesView.m */,
+			);
+			name = "My Messages";
+			sourceTree = "<group>";
+		};
+		94B5EC091C70617C00B2E13E /* Other Person's Messages */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD4731C700CF90008F7E8 /* OtherPersonMessagesView.h */,
+				94BCD4741C700CF90008F7E8 /* OtherPersonMessagesView.m */,
+			);
+			name = "Other Person's Messages";
+			sourceTree = "<group>";
+		};
 		94BCD3C31C7007E30008F7E8 = {
 			isa = PBXGroup;
 			children = (
@@ -235,22 +319,10 @@
 		94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */ = {
 			isa = PBXGroup;
 			children = (
-				94482C6B1C701EBD0007AA9F /* GroupChatInterfaceController.h */,
-				94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */,
-				94BCD4791C700F0F0008F7E8 /* Constants.h */,
-				94BCD47A1C700F0F0008F7E8 /* Constants.m */,
-				94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */,
-				94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */,
-				94BCD46F1C700CF90008F7E8 /* GroupRowView.h */,
-				94BCD4701C700CF90008F7E8 /* GroupRowView.m */,
-				94BCD4711C700CF90008F7E8 /* MyMessagesView.h */,
-				94BCD4721C700CF90008F7E8 /* MyMessagesView.m */,
-				94BCD4731C700CF90008F7E8 /* OtherPersonMessagesView.h */,
-				94BCD4741C700CF90008F7E8 /* OtherPersonMessagesView.m */,
-				94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */,
-				94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */,
-				94BCD44E1C700C7F0008F7E8 /* NotificationController.h */,
-				94BCD44F1C700C7F0008F7E8 /* NotificationController.m */,
+				94B5EC011C70613100B2E13E /* Interface Controllers */,
+				94B5EC041C70614A00B2E13E /* Views */,
+				94B5EC021C70613C00B2E13E /* Constants */,
+				94B5EC031C70614300B2E13E /* Auxillary */,
 				94BCD4511C700C7F0008F7E8 /* Assets.xcassets */,
 				94BCD4531C700C7F0008F7E8 /* Info.plist */,
 				94BCD4491C700C7F0008F7E8 /* Supporting Files */,
@@ -723,6 +795,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -734,6 +807,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -747,6 +821,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -762,6 +837,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";

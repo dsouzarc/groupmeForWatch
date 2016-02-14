@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
@@ -15,14 +15,13 @@
                                 <tableRow identifier="GroupRowView" id="Gs1-e4-ugw" customClass="GroupRowView">
                                     <group key="rootItem" width="1" alignment="left" id="4XZ-eX-Ds5">
                                         <items>
-                                            <imageView width="40" height="39" alignment="left" image="group_of_people.png" id="snM-0e-V36"/>
+                                            <imageView width="40" height="39" alignment="left" image="group_of_people" id="snM-0e-V36"/>
                                             <label width="1" height="37.5" alignment="left" text="Group Name" numberOfLines="0" id="ddQ-Cd-hP8"/>
                                         </items>
                                     </group>
                                     <connections>
                                         <outlet property="groupImage" destination="snM-0e-V36" id="V9N-ok-FU0"/>
                                         <outlet property="groupName" destination="ddQ-Cd-hP8" id="0n0-my-DbI"/>
-                                        <segue destination="B3H-mL-uSQ" kind="push" id="xfG-Vr-hkS"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -38,7 +37,7 @@
         <!--GroupChatInterfaceController-->
         <scene sceneID="grJ-RS-bPD">
             <objects>
-                <controller identifier="GroupChatInterfaceController" id="B3H-mL-uSQ" customClass="GroupChatInterfaceController">
+                <controller identifier="GroupChatInterfaceController" hidesWhenLoading="NO" id="B3H-mL-uSQ" customClass="GroupChatInterfaceController">
                     <items>
                         <button width="1" alignment="left" title="Reply" id="KzG-jY-zPl">
                             <connections>

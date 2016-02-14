@@ -70,7 +70,7 @@
             [typeOfMessage addObject:@"OtherPersonMessagesView"];
         }
     }
-    NSLog(@"GOINGGGG");
+
     [self.groupChatTable setRowTypes:typeOfMessage];
     
     for(NSInteger i = 0; i < self.groupChatTable.numberOfRows; i++) {
@@ -97,8 +97,10 @@
 
 - (void)willActivate {
     [super willActivate];
-    
-    [self setupTableWithMessages];
+ 
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        [self setupTableWithMessages];
+    });
     
     /*NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": self.groupID};
     

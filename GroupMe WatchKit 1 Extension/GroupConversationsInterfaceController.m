@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSMutableArray *groups;
 
 @property (strong, nonatomic) NSMutableDictionary *messageForChatID;
+@property (strong, nonatomic) NSMutableDictionary *imageForChatID;
+
 @property (strong, nonatomic) NSOperationQueue *downloadImagesQueue;
 @property (strong, nonatomic) NSOperationQueue *loadImagesQueue;
 
@@ -31,7 +33,9 @@
     
     self.groups = [Constants getGroupsDataFromFile];
     self.defaultPhoto = [UIImage imageNamed:@"group_of_people"];
+    
     self.messageForChatID = [[NSMutableDictionary alloc] init];
+    self.imageForChatID = [[NSMutableDictionary alloc] init];
     
     self.downloadImagesQueue = [[NSOperationQueue alloc] init];
     self.loadImagesQueue = [[NSOperationQueue alloc] init];
@@ -41,42 +45,40 @@
 
     if(self.groups.count > 0) {
         NSString *firstGroupID = [self.groups[0] objectForKey:@"id"];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-            [self updateChatForGroupID:firstGroupID showChatInterface:NO];
-        });
+        [self updateChatForGroupID:firstGroupID showChatInterface:NO];
     }
 }
 
-- (NSDictionary*) updateChatForGroupID:(NSString*)groupID showChatInterface:(BOOL)showChatInterface
+- (void) updateChatForGroupID:(NSString*)groupID showChatInterface:(BOOL)showChatInterface
 {
     
     //If we already have the messages
     if([self.messageForChatID objectForKey:groupID]) {
         if(showChatInterface) {
             NSDictionary *context = @{@"id": groupID, @"messages": self.messageForChatID[groupID], @"myName": self.myName};
-            //[self presentControllerWithName:@"GroupChatInterfaceController" context:context];
-            return context;
+            [self presentControllerWithName:@"GroupChatInterfaceController" context:context];
         }
         else {
-            return nil;
+            return;
         }
     }
     
     NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": groupID};
-
-    [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
-        
-        NSArray *messages = responseDict[@"messages"];
-        self.myName = responseDict[@"myName"];
-        [self.messageForChatID setObject:[NSMutableArray arrayWithArray:messages] forKey:groupID];
-        
-        if(showChatInterface) {
-            NSDictionary *context = @{@"id": groupID, @"messages": messages, @"myName": self.myName};
-            [self presentControllerWithName:@"GroupChatInterfaceController" context:context];
-        }
-    }];
     
-    return nil;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+        
+        [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
+            
+            NSArray *messages = responseDict[@"messages"];
+            self.myName = responseDict[@"myName"];
+            [self.messageForChatID setObject:[NSMutableArray arrayWithArray:messages] forKey:groupID];
+            
+            if(showChatInterface) {
+                NSDictionary *context = @{@"id": groupID, @"messages": messages, @"myName": self.myName};
+                [self presentControllerWithName:@"GroupChatInterfaceController" context:context];
+            }
+        }];
+    });
 }
 
 - (void) initialSetupTable
@@ -89,15 +91,19 @@
         NSDictionary *group = self.groups[i];
         
         [rowView.groupName setText:group[@"name"]];
-
-        UIImage *groupImage = [UIImage imageNamed:group[@"id"]];
         
-        if(groupImage || CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
-            groupImage = self.defaultPhoto;
-        }
-        
-        [rowView.groupImage setImage:groupImage];
-        
+        /*[self.loadImagesQueue addOperationWithBlock:^(void) {
+            UIImage *groupImage = [Constants getImageForGroupID:group[@"id"]];
+            
+            if(groupImage && !CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
+                [rowView.groupImage setImage:groupImage];
+            }
+            else {
+                groupImage = self.defaultPhoto;
+            }
+            
+            [self.imageForChatID setObject:groupImage forKey:group[@"id"]];
+        }];*/
     }
 }
 
@@ -108,9 +114,7 @@
     }
     
     if(self.groups.count > 0) {
-        [self.downloadImagesQueue addOperationWithBlock:^(void) {
-            [self updateChatForGroupID:[self.groups[0] objectForKey:@"id"] showChatInterface:NO];
-        }];
+        [self updateChatForGroupID:[self.groups[0] objectForKey:@"id"] showChatInterface:NO];
     }
     
     for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows && i < self.groups.count; i++) {
@@ -118,19 +122,23 @@
         NSDictionary *group = self.groups[i];
         
         [rowView.groupName setText:group[@"name"]];
-        
-        [self.loadImagesQueue addOperationWithBlock:^(void) {
-            UIImage *groupImage = [Constants getImageForGroupID:group[@"id"]]; //[UIImage imageNamed:group[@"id"]];
-            if(groupImage && !CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
-                [rowView.groupImage setImage:groupImage];
-            }
-        }];
-  
+
         NSString *imageURL = group[@"image_url"];
         
-        if([imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
+        if([imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0 && self.imageForChatID[group[@"id"]] != self.defaultPhoto) {
             
             [self.downloadImagesQueue addOperationWithBlock:^(void) {
+                
+                UIImage *groupImage = [Constants getImageForGroupID:group[@"id"]];
+                
+                if(groupImage && !CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
+                    [rowView.groupImage setImage:groupImage];
+                    return;
+                }
+                else {
+                    groupImage = self.defaultPhoto;
+                }
+                
                 NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
                 [request setURL:[NSURL URLWithString:imageURL]];
                 [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -146,6 +154,7 @@
                             [rowView.groupImage setImage:newGroupPhoto];
                             [[WKInterfaceDevice currentDevice] addCachedImage:newGroupPhoto name:group[@"id"]];
                             [Constants saveImage:newGroupPhoto forGroupID:group[@"id"]];
+                            [self.imageForChatID setObject:newGroupPhoto forKey:group[@"id"]];
                         }
                     }
                 }];
@@ -156,19 +165,11 @@
     }
 }
 
-- (id) contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex
-{
-    NSDictionary *selectedGroup = self.groups[rowIndex];
-    NSLog(@"GUCCI HERE: %@", selectedGroup[@"name"]);
-    return [self updateChatForGroupID:selectedGroup[@"id"] showChatInterface:YES];
-}
-
 - (void) table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
 {
-    NSLog(@"YOOO");
     [self.downloadImagesQueue cancelAllOperations];
     [self.loadImagesQueue cancelAllOperations];
-    
+
     NSDictionary *selectedGroup = self.groups[rowIndex];
     [self updateChatForGroupID:selectedGroup[@"id"] showChatInterface:YES];
 }
@@ -176,16 +177,22 @@
 - (void)willActivate {
     [super willActivate];
     
-    [self initialSetupTable];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+        
+        [self initialSetupTable];
+        
         NSDictionary *params = @{@"action": @"getConversations"};
         
         [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
             self.groups = response[@"groups"];
             self.myName = response[@"myName"];
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+                [self postSetupTable];
+            });
+            
             [Constants saveGroupsDataToFile:self.groups];
-            [self postSetupTable];
+            
          }];
     });
 }
