@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) NSMutableArray *groups;
 @property (strong, nonatomic) NSString *myName;
+@property (strong, nonatomic) UIImage *defaultImage;
 
 @end
 
@@ -23,55 +24,67 @@
     [super awakeWithContext:context];
     
     self.groups = [Constants getGroupsDataFromFile];
+    self.defaultImage = [Constants getDefaultBlankPhoto];
 }
 
-- (void) setupTableAndRefreshImages:(BOOL)shouldRefreshImages
+- (void) initialSetupTable
 {
     [self.groupInterfaceTable setNumberOfRows:self.groups.count withRowType:@"GroupRowView"];
-
+    
+    
     for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows; i++) {
         
         GroupRowView *rowView = (GroupRowView*) [self.groupInterfaceTable rowControllerAtIndex:i];
         NSDictionary *group = self.groups[i];
         
         [rowView.groupName setText:group[@"name"]];
-        [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
+        [rowView.groupImage setImage:self.defaultImage];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+            [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
+        });
+    }
+}
 
-        NSString *imageURL = group[@"image_url"];
-        if(shouldRefreshImages && [imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
-
-            NSMutableURLRequest *getImageRequest = [[NSMutableURLRequest alloc] init];
-            [getImageRequest setURL:[NSURL URLWithString:imageURL]];
-            [getImageRequest setHTTPMethod:@"GET"];
+- (void) postSetupTable
+{
+    if(self.groupInterfaceTable.numberOfRows < 5) {
+        [self.groupInterfaceTable setNumberOfRows:self.groups.count withRowType:@"GroupRowView"];
+    }
+    
+    for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows && i < self.groups.count; i++) {
+        GroupRowView *rowView = (GroupRowView*) [self.groupInterfaceTable rowControllerAtIndex:i];
+        NSDictionary *group = self.groups[i];
+        
+        [rowView.groupName setText:group[@"name"]];
+        [rowView.groupImage setImage:self.defaultImage];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+            [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
             
-            NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-                if(data) {
-                    UIImage *groupPhoto = [UIImage imageWithData:data];
-                    if(groupPhoto) {
-                        [rowView.groupImage setImage:groupPhoto];
-                        [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
-                    }
-                }
-            }];
+            NSString *imageURL = group[@"image_url"];
             
-            [getImageTask resume];
-            
-            /*
-             NSDictionary *getImageParams = @{@"action": @"getImage", @"image_url": imageURL };
-             [WKInterfaceController openParentApplication:getImageParams reply:^(NSDictionary *response, NSError *error) {
-                NSLog(@"ERROR: %@", response);
-                if(![response[@"error"] boolValue]) {
-                    UIImage *groupPhoto = response[@"image"];
+            if([imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
+                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+                [request setURL:[NSURL URLWithString:imageURL]];
+                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+                [request setHTTPMethod:@"GET"];
+                
+                NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                     
-                    if(groupPhoto) {
-                        [rowView.groupImage setImage:groupPhoto];
-                        [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
+                    if(data) {
+                        UIImage *groupPhoto = [UIImage imageWithData:data];
+                        if(groupPhoto) {
+                            [rowView.groupImage setImage:groupPhoto];
+                            [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
+                        }
                     }
-
-                }
-            }];*/
-        }
+                }];
+                
+                [getImageTask resume];
+            }
+        });
+        
     }
 }
 
@@ -79,21 +92,20 @@
 {
     NSDictionary *selectedGroup = self.groups[rowIndex];
     [self pushControllerWithName:@"GroupChatInterfaceController" context:selectedGroup[@"id"]];
-    NSLog(@"LAUNCHED NEXT");
 }
 
 - (void)willActivate {
     [super willActivate];
     
-     [self setupTableAndRefreshImages:NO];
+    [self initialSetupTable];
     
-    /*NSDictionary *params = @{@"action": @"getConversations"};
+    NSDictionary *params = @{@"action": @"getConversations"};
     
     [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
         self.groups = response[@"groups"];
         self.myName = response[@"myName"];
-        [self setupTableAndRefreshImages:NO];
-    }];*/
+        [self postSetupTable];
+    }];
     
 }
 

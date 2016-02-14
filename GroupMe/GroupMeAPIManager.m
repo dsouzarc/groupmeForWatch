@@ -59,7 +59,7 @@ static const NSString *GROUP_URL = @"groups?token=";
 
 - (NSMutableURLRequest*) getMessagesForGroup:(NSString*)groupID
 {
-    NSString *url = [NSString stringWithFormat:@"%@groups/%@/messages?token=%@&limit=70", BASE_URL, groupID, self.apiKey];
+    NSString *url = [NSString stringWithFormat:@"%@groups/%@/messages?token=%@&limit=30", BASE_URL, groupID, self.apiKey];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
