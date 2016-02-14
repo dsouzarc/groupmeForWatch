@@ -13,8 +13,11 @@
 @property (strong, nonatomic) IBOutlet WKInterfaceTable *groupInterfaceTable;
 
 @property (strong, nonatomic) NSMutableArray *groups;
+@property (strong, nonatomic) NSMutableDictionary *imagesForChat;
+
+@property (strong, nonatomic) UIImage *defaultPhoto;
+
 @property (strong, nonatomic) NSString *myName;
-@property (strong, nonatomic) UIImage *defaultImage;
 
 @end
 
@@ -24,25 +27,27 @@
     [super awakeWithContext:context];
     
     self.groups = [Constants getGroupsDataFromFile];
-    self.defaultImage = [Constants getDefaultBlankPhoto];
+    self.defaultPhoto = [UIImage imageNamed:@"group_of_people"];
 }
 
 - (void) initialSetupTable
 {
+    
     [self.groupInterfaceTable setNumberOfRows:self.groups.count withRowType:@"GroupRowView"];
-    
-    
     for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows; i++) {
         
         GroupRowView *rowView = (GroupRowView*) [self.groupInterfaceTable rowControllerAtIndex:i];
         NSDictionary *group = self.groups[i];
         
         [rowView.groupName setText:group[@"name"]];
-        [rowView.groupImage setImage:self.defaultImage];
+
+        UIImage *groupImage = [UIImage imageNamed:group[@"id"]];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
-            [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
-        });
+        if(!rowView.groupImage) {
+            groupImage = self.defaultPhoto;
+        }
+        
+        [rowView.groupImage setImage:groupImage];
     }
 }
 
@@ -57,34 +62,37 @@
         NSDictionary *group = self.groups[i];
         
         [rowView.groupName setText:group[@"name"]];
-        [rowView.groupImage setImage:self.defaultImage];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
-            [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
+        UIImage *groupImage = [UIImage imageNamed:group[@"id"]];
+        if(!groupImage) {
+            groupImage = self.defaultPhoto;
+        }
+        [rowView.groupImage setImage:groupImage];
+  
+        NSString *imageURL = group[@"image_url"];
+        
+        if([imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
             
-            NSString *imageURL = group[@"image_url"];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:[NSURL URLWithString:imageURL]];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setHTTPMethod:@"GET"];
             
-            if([imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
-                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-                [request setURL:[NSURL URLWithString:imageURL]];
-                [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-                [request setHTTPMethod:@"GET"];
+            NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 
-                NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if(data) {
+                    UIImage *newGroupPhoto = [UIImage imageWithData:data];
+                    newGroupPhoto = [Constants imageWithImage:newGroupPhoto scaledToSize:CGSizeMake(100, 100)];
                     
-                    if(data) {
-                        UIImage *groupPhoto = [UIImage imageWithData:data];
-                        if(groupPhoto) {
-                            [rowView.groupImage setImage:groupPhoto];
-                            [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
-                        }
+                    if(newGroupPhoto) {
+                        [rowView.groupImage setImage:newGroupPhoto];
+                        [[WKInterfaceDevice currentDevice] addCachedImage:newGroupPhoto name:group[@"id"]];
                     }
-                }];
-                
-                [getImageTask resume];
-            }
-        });
-        
+                }
+            }];
+            
+            [getImageTask resume];
+        }
     }
 }
 

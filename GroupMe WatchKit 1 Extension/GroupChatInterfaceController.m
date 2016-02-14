@@ -98,9 +98,11 @@
     
     NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": self.groupID};
     
+    NSLog(@"GOING TO GET MESSAGES");
     [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
         self.groupChatMessages = responseDict[@"messages"];
         self.myName = responseDict[@"myName"];
+        NSLog(@"GOT MESSAGES: %ld", self.groupChatMessages.count);
         [self setupTableWithMessages];
     }];
 }

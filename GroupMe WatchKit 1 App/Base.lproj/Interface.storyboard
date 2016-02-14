@@ -16,7 +16,7 @@
                                     <group key="rootItem" width="1" alignment="left" id="4XZ-eX-Ds5">
                                         <items>
                                             <imageView width="40" height="39" alignment="left" image="group_of_people.png" id="snM-0e-V36"/>
-                                            <label width="1" alignment="left" text="Group Name" minimumScaleFactor="0.5" id="ddQ-Cd-hP8"/>
+                                            <label width="1" height="37.5" alignment="left" text="Group Name" numberOfLines="0" id="ddQ-Cd-hP8"/>
                                         </items>
                                     </group>
                                     <connections>
