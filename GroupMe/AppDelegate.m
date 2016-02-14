@@ -10,14 +10,48 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) GroupMeAPIManager *groupMeAPIManager;
+
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.groupMeAPIManager = [GroupMeAPIManager getInstance];
+    
     return YES;
+}
+
+- (void) application:(UIApplication *)application handleWatchKitExtensionRequest:(NSDictionary *)userInfo reply:(void (^)(NSDictionary * _Nullable))reply
+{
+    if(!self.groupMeAPIManager) {
+        self.groupMeAPIManager = [GroupMeAPIManager getInstance];
+    }
+    
+    if([userInfo[@"action"] isEqualToString:@"getConversations"]) {
+        NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getGroupsRequest] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSArray *groups = [responseDict objectForKey:@"response"];
+            
+            NSMutableArray *shortenedGroups = [[NSMutableArray alloc] init];
+            
+            for(NSDictionary *group in groups) {
+                NSDictionary *shortenedGroup = @{
+                                                 @"id": group[@"id"],
+                                                 @"image_url": group[@"image_url"],
+                                                 @"name": group[@"name"]
+                                                 };
+                [shortenedGroups addObject:shortenedGroup];
+                
+                reply(@{@"response": shortenedGroup});
+            }
+        }];
+        
+        [getGroupsTask resume];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
