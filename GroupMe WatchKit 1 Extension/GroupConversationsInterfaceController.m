@@ -77,7 +77,7 @@
     [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
         self.groups = response[@"groups"];
         self.myName = response[@"myName"];
-        
+ 
         [self setupTableAndRefreshImages:YES];
     }];
     

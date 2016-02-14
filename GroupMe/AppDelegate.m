@@ -52,7 +52,7 @@
                                            @"myName": [GroupMeAPIManager getMyName]
                                         };
             
-            reply(responseDict);
+            reply(myResponseDict);
             
         }];
         
