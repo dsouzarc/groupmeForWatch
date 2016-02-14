@@ -19,6 +19,7 @@
 
 + (UIImage*) getDefaultBlankPhoto;
 + (UIImage*) getImageForGroupID:(NSString*)groupID;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 + (void) saveImage:(UIImage*)image forGroupID:(NSString*)groupID;
 

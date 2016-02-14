@@ -58,6 +58,33 @@
         
         [getGroupsTask resume];
     }
+    
+    else if([userInfo[@"action"] isEqualToString:@"getImage"]) {
+        
+        NSString *imageURL = userInfo[@"image_url"];
+        
+        NSMutableURLRequest *getImageRequest = [[NSMutableURLRequest alloc] init];
+        [getImageRequest setURL:[NSURL URLWithString:imageURL]];
+        [getImageRequest setHTTPMethod:@"GET"];
+        
+        NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            NSDictionary *myResponseDict = @{@"error": @YES};
+            
+            if(data) {
+                UIImage *groupPhoto = [UIImage imageWithData:data];
+                
+                if(groupPhoto) {
+                    [myResponseDict setValue:groupPhoto forKey:@"image"];
+                    [myResponseDict setValue:@NO forKey:@"error"];
+                }
+            }
+            
+            reply(myResponseDict);
+        }];
+        
+        [getImageTask resume];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

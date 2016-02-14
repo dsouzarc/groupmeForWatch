@@ -39,26 +39,39 @@
         [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
         
         NSString *imageURL = group[@"image_url"];
-        
         if(shouldRefreshImages && [imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
-            
+
             NSMutableURLRequest *getImageRequest = [[NSMutableURLRequest alloc] init];
-            [getImageRequest setURL:[NSURL URLWithString:group[@"image_url"]]];
+            [getImageRequest setURL:[NSURL URLWithString:imageURL]];
             [getImageRequest setHTTPMethod:@"GET"];
             
-            //CHANGE
-            //TODO: CHANGE
-            /*NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
                 if(data) {
                     UIImage *groupPhoto = [UIImage imageWithData:data];
-                    if(group) {
+                    if(groupPhoto) {
                         [rowView.groupImage setImage:groupPhoto];
                         [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
                     }
                 }
             }];
             
-            [getImageTask resume]; */
+            [getImageTask resume];
+            
+            /*
+             NSDictionary *getImageParams = @{@"action": @"getImage", @"image_url": imageURL };
+             [WKInterfaceController openParentApplication:getImageParams reply:^(NSDictionary *response, NSError *error) {
+                NSLog(@"ERROR: %@", response);
+                if(![response[@"error"] boolValue]) {
+                    UIImage *groupPhoto = response[@"image"];
+                    
+                    if(groupPhoto) {
+                        [rowView.groupImage setImage:groupPhoto];
+                        [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
+                    }
+
+                }
+            }];*/
         }
     }
 }
