@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0720"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+               BuildableName = "GroupMe WatchKit 1 App.app"
+               BlueprintName = "GroupMe WatchKit 1 App"
+               ReferencedContainer = "container:GroupMe.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "94BCD3CB1C7007E30008F7E8"
+               BuildableName = "GroupMe.app"
+               BlueprintName = "GroupMe"
+               ReferencedContainer = "container:GroupMe.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "94BCD4461C700C7F0008F7E8"
+               BuildableName = "GroupMe WatchKit 1 Extension.appex"
+               BlueprintName = "GroupMe WatchKit 1 Extension"
+               ReferencedContainer = "container:GroupMe.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+            BuildableName = "GroupMe WatchKit 1 App.app"
+            BlueprintName = "GroupMe WatchKit 1 App"
+            ReferencedContainer = "container:GroupMe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.carousel"
+         RemotePath = "/GroupMe">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+            BuildableName = "GroupMe WatchKit 1 App.app"
+            BlueprintName = "GroupMe WatchKit 1 App"
+            ReferencedContainer = "container:GroupMe.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+            BuildableName = "GroupMe WatchKit 1 App.app"
+            BlueprintName = "GroupMe WatchKit 1 App"
+            ReferencedContainer = "container:GroupMe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.carousel"
+         RemotePath = "/GroupMe">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+            BuildableName = "GroupMe WatchKit 1 App.app"
+            BlueprintName = "GroupMe WatchKit 1 App"
+            ReferencedContainer = "container:GroupMe.xcodeproj">
+         </BuildableReference>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "94BCD4551C700C7F0008F7E8"
+            BuildableName = "GroupMe WatchKit 1 App.app"
+            BlueprintName = "GroupMe WatchKit 1 App"
+            ReferencedContainer = "container:GroupMe.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

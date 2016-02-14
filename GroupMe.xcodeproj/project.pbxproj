@@ -17,6 +17,14 @@
 		94BCD3F51C7007E30008F7E8 /* GroupMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3F41C7007E30008F7E8 /* GroupMeUITests.m */; };
 		94BCD4031C7008990008F7E8 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4021C7008980008F7E8 /* Constants.plist */; };
 		94BCD4061C7008CB0008F7E8 /* GroupMeAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */; };
+		94BCD44D1C700C7F0008F7E8 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */; };
+		94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD44F1C700C7F0008F7E8 /* NotificationController.m */; };
+		94BCD4521C700C7F0008F7E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4511C700C7F0008F7E8 /* Assets.xcassets */; };
+		94BCD4571C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */; };
+		94BCD45D1C700C7F0008F7E8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD45B1C700C7F0008F7E8 /* Interface.storyboard */; };
+		94BCD45F1C700C7F0008F7E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD45E1C700C7F0008F7E8 /* Assets.xcassets */; };
+		94BCD4631C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		94BCD46D1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +42,35 @@
 			remoteGlobalIDString = 94BCD3CB1C7007E30008F7E8;
 			remoteInfo = GroupMe;
 		};
+		94BCD4581C700C7F0008F7E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94BCD3C41C7007E30008F7E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94BCD4551C700C7F0008F7E8;
+			remoteInfo = "GroupMe WatchKit 1 App";
+		};
+		94BCD4611C700C7F0008F7E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94BCD3C41C7007E30008F7E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94BCD4461C700C7F0008F7E8;
+			remoteInfo = "GroupMe WatchKit 1 Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94BCD46A1C700C7F0008F7E8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				94BCD4631C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		94BCD3CC1C7007E30008F7E8 /* GroupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +92,20 @@
 		94BCD4021C7008980008F7E8 /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
 		94BCD4041C7008CB0008F7E8 /* GroupMeAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMeAPIManager.h; sourceTree = "<group>"; };
 		94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMeAPIManager.m; sourceTree = "<group>"; };
+		94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GroupMe WatchKit 1 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94BCD44A1C700C7F0008F7E8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
+		94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
+		94BCD44E1C700C7F0008F7E8 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		94BCD44F1C700C7F0008F7E8 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
+		94BCD4511C700C7F0008F7E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94BCD4531C700C7F0008F7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GroupMe WatchKit 1 App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		94BCD45C1C700C7F0008F7E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		94BCD45E1C700C7F0008F7E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94BCD4601C700C7F0008F7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupConversationsInterfaceController.h; sourceTree = "<group>"; };
+		94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupConversationsInterfaceController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +130,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94BCD4441C700C7F0008F7E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,6 +146,8 @@
 				94BCD3CE1C7007E30008F7E8 /* GroupMe */,
 				94BCD3E81C7007E30008F7E8 /* GroupMeTests */,
 				94BCD3F31C7007E30008F7E8 /* GroupMeUITests */,
+				94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */,
+				94BCD45A1C700C7F0008F7E8 /* GroupMe WatchKit 1 App */,
 				94BCD3CD1C7007E30008F7E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +158,8 @@
 				94BCD3CC1C7007E30008F7E8 /* GroupMe.app */,
 				94BCD3E51C7007E30008F7E8 /* GroupMeTests.xctest */,
 				94BCD3F01C7007E30008F7E8 /* GroupMeUITests.xctest */,
+				94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */,
+				94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +217,40 @@
 			name = "API Manager + Constants";
 			sourceTree = "<group>";
 		};
+		94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */,
+				94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */,
+				94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */,
+				94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */,
+				94BCD44E1C700C7F0008F7E8 /* NotificationController.h */,
+				94BCD44F1C700C7F0008F7E8 /* NotificationController.m */,
+				94BCD4511C700C7F0008F7E8 /* Assets.xcassets */,
+				94BCD4531C700C7F0008F7E8 /* Info.plist */,
+				94BCD4491C700C7F0008F7E8 /* Supporting Files */,
+			);
+			path = "GroupMe WatchKit 1 Extension";
+			sourceTree = "<group>";
+		};
+		94BCD4491C700C7F0008F7E8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD44A1C700C7F0008F7E8 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94BCD45A1C700C7F0008F7E8 /* GroupMe WatchKit 1 App */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD45B1C700C7F0008F7E8 /* Interface.storyboard */,
+				94BCD45E1C700C7F0008F7E8 /* Assets.xcassets */,
+				94BCD4601C700C7F0008F7E8 /* Info.plist */,
+			);
+			path = "GroupMe WatchKit 1 App";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,10 +261,12 @@
 				94BCD3C81C7007E30008F7E8 /* Sources */,
 				94BCD3C91C7007E30008F7E8 /* Frameworks */,
 				94BCD3CA1C7007E30008F7E8 /* Resources */,
+				94BCD46A1C700C7F0008F7E8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				94BCD4621C700C7F0008F7E8 /* PBXTargetDependency */,
 			);
 			name = GroupMe;
 			productName = GroupMe;
@@ -212,6 +309,39 @@
 			productReference = 94BCD3F01C7007E30008F7E8 /* GroupMeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		94BCD4461C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94BCD4691C700C7F0008F7E8 /* Build configuration list for PBXNativeTarget "GroupMe WatchKit 1 Extension" */;
+			buildPhases = (
+				94BCD4431C700C7F0008F7E8 /* Sources */,
+				94BCD4441C700C7F0008F7E8 /* Frameworks */,
+				94BCD4451C700C7F0008F7E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94BCD4591C700C7F0008F7E8 /* PBXTargetDependency */,
+			);
+			name = "GroupMe WatchKit 1 Extension";
+			productName = "GroupMe WatchKit 1 Extension";
+			productReference = 94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		94BCD4551C700C7F0008F7E8 /* GroupMe WatchKit 1 App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94BCD4681C700C7F0008F7E8 /* Build configuration list for PBXNativeTarget "GroupMe WatchKit 1 App" */;
+			buildPhases = (
+				94BCD4541C700C7F0008F7E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GroupMe WatchKit 1 App";
+			productName = "GroupMe WatchKit 1 App";
+			productReference = 94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,6 +365,14 @@
 						DevelopmentTeam = Q7N3L673D8;
 						TestTargetID = 94BCD3CB1C7007E30008F7E8;
 					};
+					94BCD4461C700C7F0008F7E8 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Q7N3L673D8;
+					};
+					94BCD4551C700C7F0008F7E8 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = Q7N3L673D8;
+					};
 				};
 			};
 			buildConfigurationList = 94BCD3C71C7007E30008F7E8 /* Build configuration list for PBXProject "GroupMe" */;
@@ -253,6 +391,8 @@
 				94BCD3CB1C7007E30008F7E8 /* GroupMe */,
 				94BCD3E41C7007E30008F7E8 /* GroupMeTests */,
 				94BCD3EF1C7007E30008F7E8 /* GroupMeUITests */,
+				94BCD4461C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */,
+				94BCD4551C700C7F0008F7E8 /* GroupMe WatchKit 1 App */,
 			);
 		};
 /* End PBXProject section */
@@ -280,6 +420,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94BCD4451C700C7F0008F7E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BCD4521C700C7F0008F7E8 /* Assets.xcassets in Resources */,
+				94BCD4571C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94BCD4541C700C7F0008F7E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BCD45F1C700C7F0008F7E8 /* Assets.xcassets in Resources */,
+				94BCD45D1C700C7F0008F7E8 /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +471,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		94BCD4431C700C7F0008F7E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BCD46D1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m in Sources */,
+				94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */,
+				94BCD44D1C700C7F0008F7E8 /* InterfaceController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -325,6 +493,16 @@
 			isa = PBXTargetDependency;
 			target = 94BCD3CB1C7007E30008F7E8 /* GroupMe */;
 			targetProxy = 94BCD3F11C7007E30008F7E8 /* PBXContainerItemProxy */;
+		};
+		94BCD4591C700C7F0008F7E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94BCD4551C700C7F0008F7E8 /* GroupMe WatchKit 1 App */;
+			targetProxy = 94BCD4581C700C7F0008F7E8 /* PBXContainerItemProxy */;
+		};
+		94BCD4621C700C7F0008F7E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94BCD4461C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */;
+			targetProxy = 94BCD4611C700C7F0008F7E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -343,6 +521,14 @@
 				94BCD3DE1C7007E30008F7E8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		94BCD45B1C700C7F0008F7E8 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94BCD45C1C700C7F0008F7E8 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -500,6 +686,58 @@
 			};
 			name = Release;
 		};
+		94BCD4641C700C7F0008F7E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "GroupMe WatchKit 1 Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		94BCD4651C700C7F0008F7E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "GroupMe WatchKit 1 Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		94BCD4661C700C7F0008F7E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = GroupMe_WatchKit_1_Extension;
+				INFOPLIST_FILE = "GroupMe WatchKit 1 App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		94BCD4671C700C7F0008F7E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = GroupMe_WatchKit_1_Extension;
+				INFOPLIST_FILE = "GroupMe WatchKit 1 App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.GroupMe.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -519,6 +757,7 @@
 				94BCD3FB1C7007E30008F7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94BCD3FC1C7007E30008F7E8 /* Build configuration list for PBXNativeTarget "GroupMeTests" */ = {
 			isa = XCConfigurationList;
@@ -527,12 +766,30 @@
 				94BCD3FE1C7007E30008F7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94BCD3FF1C7007E30008F7E8 /* Build configuration list for PBXNativeTarget "GroupMeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94BCD4001C7007E30008F7E8 /* Debug */,
 				94BCD4011C7007E30008F7E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94BCD4681C700C7F0008F7E8 /* Build configuration list for PBXNativeTarget "GroupMe WatchKit 1 App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94BCD4661C700C7F0008F7E8 /* Debug */,
+				94BCD4671C700C7F0008F7E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		94BCD4691C700C7F0008F7E8 /* Build configuration list for PBXNativeTarget "GroupMe WatchKit 1 Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94BCD4641C700C7F0008F7E8 /* Debug */,
+				94BCD4651C700C7F0008F7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
