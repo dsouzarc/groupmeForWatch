@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94482C6D1C701EBD0007AA9F /* GroupChatInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */; };
 		94BCD3D11C7007E30008F7E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D01C7007E30008F7E8 /* main.m */; };
 		94BCD3D41C7007E30008F7E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D31C7007E30008F7E8 /* AppDelegate.m */; };
 		94BCD3D71C7007E30008F7E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D61C7007E30008F7E8 /* ViewController.m */; };
@@ -78,6 +79,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		94482C6B1C701EBD0007AA9F /* GroupChatInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatInterfaceController.h; sourceTree = "<group>"; };
+		94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatInterfaceController.m; sourceTree = "<group>"; };
 		94BCD3CC1C7007E30008F7E8 /* GroupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BCD3D01C7007E30008F7E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94BCD3D21C7007E30008F7E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 		94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				94482C6B1C701EBD0007AA9F /* GroupChatInterfaceController.h */,
+				94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */,
 				94BCD4791C700F0F0008F7E8 /* Constants.h */,
 				94BCD47A1C700F0F0008F7E8 /* Constants.m */,
 				94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */,
@@ -502,6 +507,7 @@
 				94BCD4771C700CF90008F7E8 /* MyMessagesView.m in Sources */,
 				94BCD46D1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m in Sources */,
 				94BCD4781C700CF90008F7E8 /* OtherPersonMessagesView.m in Sources */,
+				94482C6D1C701EBD0007AA9F /* GroupChatInterfaceController.m in Sources */,
 				94BCD4761C700CF90008F7E8 /* GroupRowView.m in Sources */,
 				94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */,
 				94BCD47B1C700F0F0008F7E8 /* Constants.m in Sources */,
@@ -812,6 +818,7 @@
 				94BCD4671C700C7F0008F7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94BCD4691C700C7F0008F7E8 /* Build configuration list for PBXNativeTarget "GroupMe WatchKit 1 Extension" */ = {
 			isa = XCConfigurationList;
@@ -820,6 +827,7 @@
 				94BCD4651C700C7F0008F7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

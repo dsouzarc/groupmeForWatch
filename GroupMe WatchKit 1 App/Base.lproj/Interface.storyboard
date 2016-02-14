@@ -34,6 +34,48 @@
             </objects>
             <point key="canvasLocation" x="258" y="345"/>
         </scene>
+        <!--GroupChatInterfaceController-->
+        <scene sceneID="grJ-RS-bPD">
+            <objects>
+                <controller identifier="GroupChatInterfaceController" id="B3H-mL-uSQ" customClass="GroupChatInterfaceController">
+                    <items>
+                        <button width="1" alignment="left" title="Reply" id="KzG-jY-zPl">
+                            <connections>
+                                <action selector="replyButton" destination="B3H-mL-uSQ" id="yR1-iQ-y1M"/>
+                            </connections>
+                        </button>
+                        <table alignment="left" id="JY9-ma-Iba">
+                            <items>
+                                <tableRow identifier="MyMessagesView" id="xQg-AG-JqL" customClass="MyMessagesView">
+                                    <group key="rootItem" width="1" alignment="left" id="Vgb-wY-YJl">
+                                        <items>
+                                            <label width="1" alignment="left" text="My message" textAlignment="right" numberOfLines="0" id="6i3-EF-8JH"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="myMessageLabel" destination="6i3-EF-8JH" id="sNa-19-9Bt"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="OtherPersonMessagesView" id="eGq-pb-2fJ" customClass="OtherPersonMessagesView">
+                                    <group key="rootItem" width="1" alignment="left" id="azb-Jt-Wn7">
+                                        <items>
+                                            <label width="1" alignment="left" text="Other message" numberOfLines="0" id="7UO-77-u3G"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="otherPersonMessageLabel" destination="7UO-77-u3G" id="YCE-Xe-G3J"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="groupChatTable" destination="JY9-ma-Iba" id="OUA-lS-3H0"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="468" y="334"/>
+        </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
