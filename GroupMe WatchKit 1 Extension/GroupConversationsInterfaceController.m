@@ -42,11 +42,6 @@
     
     [self.downloadImagesQueue setMaxConcurrentOperationCount:1];
     [self.loadImagesQueue setMaxConcurrentOperationCount:2];
-
-    if(self.groups.count > 0) {
-        NSString *firstGroupID = [self.groups[0] objectForKey:@"id"];
-        [self updateChatForGroupID:firstGroupID showChatInterface:NO];
-    }
 }
 
 - (void) updateChatForGroupID:(NSString*)groupID showChatInterface:(BOOL)showChatInterface
@@ -57,10 +52,9 @@
         if(showChatInterface) {
             NSDictionary *context = @{@"id": groupID, @"messages": self.messageForChatID[groupID], @"myName": self.myName};
             [self presentControllerWithName:@"GroupChatInterfaceController" context:context];
+            NSLog(@"GOT: %ld", ((NSMutableArray*)self.messageForChatID[groupID]).count);
         }
-        else {
-            return;
-        }
+        return;
     }
     
     NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": groupID};
@@ -92,7 +86,7 @@
         
         [rowView.groupName setText:group[@"name"]];
         
-        /*[self.loadImagesQueue addOperationWithBlock:^(void) {
+        [self.loadImagesQueue addOperationWithBlock:^(void) {
             UIImage *groupImage = [Constants getImageForGroupID:group[@"id"]];
             
             if(groupImage && !CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
@@ -103,7 +97,7 @@
             }
             
             [self.imageForChatID setObject:groupImage forKey:group[@"id"]];
-        }];*/
+        }];
     }
 }
 
@@ -129,17 +123,22 @@
             
             [self.downloadImagesQueue addOperationWithBlock:^(void) {
                 
-                UIImage *groupImage = [Constants getImageForGroupID:group[@"id"]];
+                NSDictionary *params = @{@"action": @"getImage", @"image_url": imageURL};
                 
-                if(groupImage && !CGSizeEqualToSize(groupImage.size, CGSizeZero)) {
-                    [rowView.groupImage setImage:groupImage];
-                    return;
-                }
-                else {
-                    groupImage = self.defaultPhoto;
-                }
+                [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
+                    if(![responseDict[@"error"] boolValue]) {
+                        UIImage *newGroupPhoto = responseDict[@"image"];
+                        
+                        if(newGroupPhoto && !CGSizeEqualToSize(newGroupPhoto.size, CGSizeZero)) {
+                            [rowView.groupImage setImage:newGroupPhoto];
+                            [[WKInterfaceDevice currentDevice] addCachedImage:newGroupPhoto name:group[@"id"]];
+                            [Constants saveImage:newGroupPhoto forGroupID:group[@"id"]];
+                            [self.imageForChatID setObject:newGroupPhoto forKey:group[@"id"]];
+                        }
+                    }
+                }];
                 
-                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+                /*NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
                 [request setURL:[NSURL URLWithString:imageURL]];
                 [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
                 [request setHTTPMethod:@"GET"];
@@ -159,7 +158,7 @@
                     }
                 }];
                 
-                [getImageTask resume];
+                [getImageTask resume];*/
             }];
         }
     }
@@ -169,13 +168,16 @@
 {
     [self.downloadImagesQueue cancelAllOperations];
     [self.loadImagesQueue cancelAllOperations];
-
+    
     NSDictionary *selectedGroup = self.groups[rowIndex];
+    NSLog(@"We got the click");
     [self updateChatForGroupID:selectedGroup[@"id"] showChatInterface:YES];
 }
 
 - (void)willActivate {
     [super willActivate];
+    
+    NSLog(@"WE GOT: %@", self.groups);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
         
@@ -184,9 +186,24 @@
         NSDictionary *params = @{@"action": @"getConversations"};
         
         [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
-            self.groups = response[@"groups"];
+            
+            NSMutableArray *groups = [[NSMutableArray alloc] init];
+            
+            for(NSDictionary *group in response[@"groups"]) {
+                NSDictionary *goodGroup = @{@"id": group[@"id"], @"image_url": group[@"image_url"], @"name": group[@"name"]};
+                [groups addObject:goodGroup];
+                
+                NSMutableArray *messages = group[@"messages"];
+                if(messages.count > 0) {
+                    [self.messageForChatID setObject:messages forKey:group[@"id"]];
+                }
+            }
+            
+            self.groups = groups;
             self.myName = response[@"myName"];
             
+            NSLog(@"NOW WE HAVE: %@", groups);
+
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
                 [self postSetupTable];
             });

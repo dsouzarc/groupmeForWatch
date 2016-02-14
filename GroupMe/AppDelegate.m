@@ -37,14 +37,34 @@
             NSArray *groups = [responseDict objectForKey:@"response"];
             
             NSMutableArray *shortenedGroups = [[NSMutableArray alloc] init];
+            NSURLResponse *urlResponse;
+            
+            int counter = 0;
             
             for(NSDictionary *group in groups) {
+                
+                NSMutableArray *messages;
+                
+                if(counter < 3) {
+                    NSData *resultData = [NSURLConnection sendSynchronousRequest:[self.groupMeAPIManager getMessagesForGroup:group[@"id"]] returningResponse:&urlResponse error:&error];
+                    NSDictionary *messagesArray = [NSJSONSerialization JSONObjectWithData:resultData options:kNilOptions error:&error];
+                    
+                    NSArray *messagesT = [messagesArray objectForKey:@"response"][@"messages"];
+                    messages = [NSMutableArray arrayWithArray:messagesT];
+                }
+                else {
+                    messages = [[NSMutableArray alloc] init];
+                }
+                
                 NSDictionary *shortenedGroup = @{
                                                  @"id": group[@"id"],
                                                  @"image_url": group[@"image_url"],
-                                                 @"name": group[@"name"]
+                                                 @"name": group[@"name"],
+                                                 @"messages": messages
                                                  };
+                
                 [shortenedGroups addObject:shortenedGroup];
+                counter++;
             }
             
             NSDictionary *myResponseDict = @{
@@ -65,18 +85,20 @@
         
         NSMutableURLRequest *getImageRequest = [[NSMutableURLRequest alloc] init];
         [getImageRequest setURL:[NSURL URLWithString:imageURL]];
+        [getImageRequest setValue:@"applicationjson" forHTTPHeaderField:@"Accept"];
         [getImageRequest setHTTPMethod:@"GET"];
         
         NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            NSDictionary *myResponseDict = @{@"error": @YES};
+            NSDictionary *myResponseDict = @{@"error": [NSNumber numberWithBool:YES]};
             
             if(data) {
                 UIImage *groupPhoto = [UIImage imageWithData:data];
                 
                 if(groupPhoto) {
+                    groupPhoto = [GroupMeAPIManager imageWithImage:groupPhoto scaledToSize:CGSizeMake(100, 100)];
                     [myResponseDict setValue:groupPhoto forKey:@"image"];
-                    [myResponseDict setValue:@NO forKey:@"error"];
+                    [myResponseDict setValue:[NSNumber numberWithBool:NO] forKey:@"error"];
                 }
             }
             
@@ -97,7 +119,6 @@
             NSArray *messages = [responseDict objectForKey:@"response"][@"messages"];
             
             NSMutableArray *shortenedGroups = [NSMutableArray arrayWithArray:messages];
-            NSLog(@"GUCCI");
             
             NSDictionary *myResponseDict = @{
                                              @"messages": shortenedGroups,
