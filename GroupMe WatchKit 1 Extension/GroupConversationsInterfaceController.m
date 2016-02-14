@@ -23,13 +23,12 @@
     [super awakeWithContext:context];
     
     self.groups = [Constants getGroupsDataFromFile];
-    [self setupTableAndRefreshImages:YES];
 }
 
 - (void) setupTableAndRefreshImages:(BOOL)shouldRefreshImages
 {
     [self.groupInterfaceTable setNumberOfRows:self.groups.count withRowType:@"GroupRowView"];
-    
+
     for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows; i++) {
         
         GroupRowView *rowView = (GroupRowView*) [self.groupInterfaceTable rowControllerAtIndex:i];
@@ -37,7 +36,7 @@
         
         [rowView.groupName setText:group[@"name"]];
         [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
-        
+
         NSString *imageURL = group[@"image_url"];
         if(shouldRefreshImages && [imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
 
@@ -80,28 +79,26 @@
 {
     NSDictionary *selectedGroup = self.groups[rowIndex];
     [self pushControllerWithName:@"GroupChatInterfaceController" context:selectedGroup[@"id"]];
+    NSLog(@"LAUNCHED NEXT");
 }
 
 - (void)willActivate {
     [super willActivate];
     
-    NSDictionary *params = @{@"action": @"getConversations"};
+     [self setupTableAndRefreshImages:NO];
+    
+    /*NSDictionary *params = @{@"action": @"getConversations"};
     
     [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
         self.groups = response[@"groups"];
         self.myName = response[@"myName"];
- 
-        [self setupTableAndRefreshImages:YES];
-    }];
+        [self setupTableAndRefreshImages:NO];
+    }];*/
     
 }
 
 - (void)didDeactivate {
-    // This method is called when watch view controller is no longer visible
     [super didDeactivate];
 }
 
 @end
-
-
-

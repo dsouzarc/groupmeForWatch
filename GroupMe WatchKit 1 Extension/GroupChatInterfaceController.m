@@ -30,7 +30,7 @@
 }
 
 - (IBAction)replyButton {
-    NSLog(@"REWPY CLICKED");
+   /* NSLog(@"REWPY CLICKED");
     [self presentTextInputControllerWithSuggestions:@[@"Ok lols", @"Bye"] allowedInputMode:WKTextInputModePlain completion:^(NSArray *results) {
         if(results && results.count > 0) {
             NSString *result = results[0];
@@ -46,21 +46,21 @@
                     
                     NSDictionary *myMessage = @{@"name": self.myName, @"text": result};
                     [self.groupChatMessages insertObject:myMessage atIndex:0];
-                    [self setupTableWithMessages:self.groupChatMessages];
+                    //[self setupTableWithMessages:self.groupChatMessages];
 
                 }
             }];
             
             [sendMessageTask resume];
         }
-    }];
+    }];*/
 }
 
-- (void) setupTableWithMessages:(NSMutableArray*)messages
+- (void) setupTableWithMessages
 {
     NSMutableArray *typeOfMessage = [[NSMutableArray alloc] init];
     
-    for(NSDictionary *message in messages) {
+    for(NSDictionary *message in self.groupChatMessages) {
         if([message[@"name"] isEqualToString:self.myName]) {
             [typeOfMessage addObject:@"MyMessagesView"];
         }
@@ -72,7 +72,7 @@
     [self.groupChatTable setRowTypes:typeOfMessage];
     
     for(NSInteger i = 0; i < self.groupChatTable.numberOfRows; i++) {
-        NSDictionary *message = messages[i];
+        NSDictionary *message = self.groupChatMessages[i];
         
         NSString *text = message[@"text"];
         
@@ -96,16 +96,13 @@
 - (void)willActivate {
     [super willActivate];
     
-    NSURLSessionDataTask *getMessagesTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.apiManager getMessagesForGroup:self.groupID] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": self.groupID};
     
-        NSArray *messages = responseDict[@"response"][@"messages"];
-        self.groupChatMessages = [[NSMutableArray alloc] initWithArray:messages];
-        [self setupTableWithMessages:self.groupChatMessages];
+    [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
+        self.groupChatMessages = responseDict[@"messages"];
+        self.myName = responseDict[@"myName"];
+        [self setupTableWithMessages];
     }];
-
-    [getMessagesTask resume];
 }
 
 - (void)didDeactivate {

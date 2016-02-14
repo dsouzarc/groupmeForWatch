@@ -85,6 +85,30 @@
         
         [getImageTask resume];
     }
+    
+    else if([userInfo[@"action"] isEqualToString:@"getGroupChatMessages"]) {
+        NSString *groupChatID = userInfo[@"groupID"];
+        
+        NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getMessagesForGroup:groupChatID] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSArray *messages = [responseDict objectForKey:@"response"][@"messages"];
+            
+            NSMutableArray *shortenedGroups = [NSMutableArray arrayWithArray:messages];
+
+            
+            NSDictionary *myResponseDict = @{
+                                             @"messages": shortenedGroups,
+                                             @"myName": [GroupMeAPIManager getMyName]
+                                             };
+            
+            reply(myResponseDict);
+            
+        }];
+        
+        [getGroupsTask resume];
+
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
