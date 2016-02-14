@@ -15,6 +15,8 @@
 		94BCD3DF1C7007E30008F7E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD3DD1C7007E30008F7E8 /* LaunchScreen.storyboard */; };
 		94BCD3EA1C7007E30008F7E8 /* GroupMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3E91C7007E30008F7E8 /* GroupMeTests.m */; };
 		94BCD3F51C7007E30008F7E8 /* GroupMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3F41C7007E30008F7E8 /* GroupMeUITests.m */; };
+		94BCD4031C7008990008F7E8 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4021C7008980008F7E8 /* Constants.plist */; };
+		94BCD4061C7008CB0008F7E8 /* GroupMeAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		94BCD3F01C7007E30008F7E8 /* GroupMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BCD3F41C7007E30008F7E8 /* GroupMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupMeUITests.m; sourceTree = "<group>"; };
 		94BCD3F61C7007E30008F7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94BCD4021C7008980008F7E8 /* Constants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Constants.plist; sourceTree = "<group>"; };
+		94BCD4041C7008CB0008F7E8 /* GroupMeAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMeAPIManager.h; sourceTree = "<group>"; };
+		94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMeAPIManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +106,7 @@
 		94BCD3CE1C7007E30008F7E8 /* GroupMe */ = {
 			isa = PBXGroup;
 			children = (
+				94BCD4071C7008D00008F7E8 /* API Manager + Constants */,
 				94BCD3D21C7007E30008F7E8 /* AppDelegate.h */,
 				94BCD3D31C7007E30008F7E8 /* AppDelegate.m */,
 				94BCD3D51C7007E30008F7E8 /* ViewController.h */,
@@ -138,6 +144,16 @@
 				94BCD3F61C7007E30008F7E8 /* Info.plist */,
 			);
 			path = GroupMeUITests;
+			sourceTree = "<group>";
+		};
+		94BCD4071C7008D00008F7E8 /* API Manager + Constants */ = {
+			isa = PBXGroup;
+			children = (
+				94BCD4041C7008CB0008F7E8 /* GroupMeAPIManager.h */,
+				94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */,
+				94BCD4021C7008980008F7E8 /* Constants.plist */,
+			);
+			name = "API Manager + Constants";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +264,7 @@
 			files = (
 				94BCD3DF1C7007E30008F7E8 /* LaunchScreen.storyboard in Resources */,
 				94BCD3DC1C7007E30008F7E8 /* Assets.xcassets in Resources */,
+				94BCD4031C7008990008F7E8 /* Constants.plist in Resources */,
 				94BCD3DA1C7007E30008F7E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +292,7 @@
 			files = (
 				94BCD3D71C7007E30008F7E8 /* ViewController.m in Sources */,
 				94BCD3D41C7007E30008F7E8 /* AppDelegate.m in Sources */,
+				94BCD4061C7008CB0008F7E8 /* GroupMeAPIManager.m in Sources */,
 				94BCD3D11C7007E30008F7E8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
