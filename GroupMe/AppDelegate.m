@@ -45,9 +45,15 @@
                                                  @"name": group[@"name"]
                                                  };
                 [shortenedGroups addObject:shortenedGroup];
-                
-                reply(@{@"response": shortenedGroup});
             }
+            
+            NSDictionary *myResponseDict = @{
+                                           @"groups": shortenedGroups,
+                                           @"myName": [GroupMeAPIManager getMyName]
+                                        };
+            
+            reply(responseDict);
+            
         }];
         
         [getGroupsTask resume];

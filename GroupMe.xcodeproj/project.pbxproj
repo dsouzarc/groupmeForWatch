@@ -25,6 +25,11 @@
 		94BCD45F1C700C7F0008F7E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD45E1C700C7F0008F7E8 /* Assets.xcassets */; };
 		94BCD4631C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		94BCD46D1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */; };
+		94BCD4751C700CF90008F7E8 /* group_of_people.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD46E1C700CF90008F7E8 /* group_of_people.png */; };
+		94BCD4761C700CF90008F7E8 /* GroupRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4701C700CF90008F7E8 /* GroupRowView.m */; };
+		94BCD4771C700CF90008F7E8 /* MyMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4721C700CF90008F7E8 /* MyMessagesView.m */; };
+		94BCD4781C700CF90008F7E8 /* OtherPersonMessagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4741C700CF90008F7E8 /* OtherPersonMessagesView.m */; };
+		94BCD47B1C700F0F0008F7E8 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD47A1C700F0F0008F7E8 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +111,15 @@
 		94BCD4601C700C7F0008F7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupConversationsInterfaceController.h; sourceTree = "<group>"; };
 		94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupConversationsInterfaceController.m; sourceTree = "<group>"; };
+		94BCD46E1C700CF90008F7E8 /* group_of_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_of_people.png; sourceTree = "<group>"; };
+		94BCD46F1C700CF90008F7E8 /* GroupRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupRowView.h; sourceTree = "<group>"; };
+		94BCD4701C700CF90008F7E8 /* GroupRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupRowView.m; sourceTree = "<group>"; };
+		94BCD4711C700CF90008F7E8 /* MyMessagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMessagesView.h; sourceTree = "<group>"; };
+		94BCD4721C700CF90008F7E8 /* MyMessagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMessagesView.m; sourceTree = "<group>"; };
+		94BCD4731C700CF90008F7E8 /* OtherPersonMessagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherPersonMessagesView.h; sourceTree = "<group>"; };
+		94BCD4741C700CF90008F7E8 /* OtherPersonMessagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherPersonMessagesView.m; sourceTree = "<group>"; };
+		94BCD4791C700F0F0008F7E8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		94BCD47A1C700F0F0008F7E8 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +159,9 @@
 			children = (
 				94BCD3CE1C7007E30008F7E8 /* GroupMe */,
 				94BCD3E81C7007E30008F7E8 /* GroupMeTests */,
-				94BCD3F31C7007E30008F7E8 /* GroupMeUITests */,
-				94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */,
 				94BCD45A1C700C7F0008F7E8 /* GroupMe WatchKit 1 App */,
+				94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */,
+				94BCD3F31C7007E30008F7E8 /* GroupMeUITests */,
 				94BCD3CD1C7007E30008F7E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -220,8 +234,17 @@
 		94BCD4481C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension */ = {
 			isa = PBXGroup;
 			children = (
+				94BCD4791C700F0F0008F7E8 /* Constants.h */,
+				94BCD47A1C700F0F0008F7E8 /* Constants.m */,
 				94BCD46B1C700C9D0008F7E8 /* GroupConversationsInterfaceController.h */,
 				94BCD46C1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m */,
+				94BCD46E1C700CF90008F7E8 /* group_of_people.png */,
+				94BCD46F1C700CF90008F7E8 /* GroupRowView.h */,
+				94BCD4701C700CF90008F7E8 /* GroupRowView.m */,
+				94BCD4711C700CF90008F7E8 /* MyMessagesView.h */,
+				94BCD4721C700CF90008F7E8 /* MyMessagesView.m */,
+				94BCD4731C700CF90008F7E8 /* OtherPersonMessagesView.h */,
+				94BCD4741C700CF90008F7E8 /* OtherPersonMessagesView.m */,
 				94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */,
 				94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */,
 				94BCD44E1C700C7F0008F7E8 /* NotificationController.h */,
@@ -429,6 +452,7 @@
 			files = (
 				94BCD4521C700C7F0008F7E8 /* Assets.xcassets in Resources */,
 				94BCD4571C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app in Resources */,
+				94BCD4751C700CF90008F7E8 /* group_of_people.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,8 +499,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94BCD4771C700CF90008F7E8 /* MyMessagesView.m in Sources */,
 				94BCD46D1C700C9D0008F7E8 /* GroupConversationsInterfaceController.m in Sources */,
+				94BCD4781C700CF90008F7E8 /* OtherPersonMessagesView.m in Sources */,
+				94BCD4761C700CF90008F7E8 /* GroupRowView.m in Sources */,
 				94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */,
+				94BCD47B1C700F0F0008F7E8 /* Constants.m in Sources */,
 				94BCD44D1C700C7F0008F7E8 /* InterfaceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,9 @@
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
 
+#import "GroupRowView.h"
+#import "Constants.h"
+
 @interface GroupConversationsInterfaceController : WKInterfaceController
 
 @end

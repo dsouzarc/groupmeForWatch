@@ -10,6 +10,11 @@
 
 @interface GroupConversationsInterfaceController ()
 
+@property (strong, nonatomic) IBOutlet WKInterfaceTable *groupInterfaceTable;
+
+@property (strong, nonatomic) NSMutableArray *groups;
+@property (strong, nonatomic) NSString *myName;
+
 @end
 
 @implementation GroupConversationsInterfaceController
@@ -17,13 +22,65 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     
-    NSLog(@"CALLED HERE");
-    // Configure interface objects here.
+    self.groups = [Constants getGroupsDataFromFile];
+    [self setupTableAndRefreshImages:YES];
+}
+
+- (void) setupTableAndRefreshImages:(BOOL)shouldRefreshImages
+{
+    [self.groupInterfaceTable setNumberOfRows:self.groups.count withRowType:@"GroupRowView"];
+    
+    for(NSInteger i = 0; i < self.groupInterfaceTable.numberOfRows; i++) {
+        
+        GroupRowView *rowView = (GroupRowView*) [self.groupInterfaceTable rowControllerAtIndex:i];
+        NSDictionary *group = self.groups[i];
+        
+        [rowView.groupName setText:group[@"name"]];
+        [rowView.groupImage setImage:[Constants getImageForGroupID:group[@"id"]]];
+        
+        NSString *imageURL = group[@"image_url"];
+        
+        if(shouldRefreshImages && [imageURL isKindOfClass:[NSString class]] && imageURL && [imageURL length] > 0) {
+            
+            NSMutableURLRequest *getImageRequest = [[NSMutableURLRequest alloc] init];
+            [getImageRequest setURL:[NSURL URLWithString:group[@"image_url"]]];
+            [getImageRequest setHTTPMethod:@"GET"];
+            
+            //CHANGE
+            //TODO: CHANGE
+            /*NSURLSessionDataTask *getImageTask = [[NSURLSession sharedSession] dataTaskWithRequest:getImageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if(data) {
+                    UIImage *groupPhoto = [UIImage imageWithData:data];
+                    if(group) {
+                        [rowView.groupImage setImage:groupPhoto];
+                        [Constants saveImage:groupPhoto forGroupID:group[@"id"]];
+                    }
+                }
+            }];
+            
+            [getImageTask resume]; */
+        }
+    }
+}
+
+- (void) table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex
+{
+    NSDictionary *selectedGroup = self.groups[rowIndex];
+    [self pushControllerWithName:@"GroupChatInterfaceController" context:selectedGroup[@"id"]];
 }
 
 - (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
     [super willActivate];
+    
+    NSDictionary *params = @{@"action": @"getConversations"};
+    
+    [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
+        self.groups = response[@"groups"];
+        self.myName = response[@"myName"];
+        
+        [self setupTableAndRefreshImages:YES];
+    }];
+    
 }
 
 - (void)didDeactivate {

@@ -8,9 +8,31 @@
         <!--GroupConversationsInterfaceController-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="GroupConversationsInterfaceController" id="AgC-eL-Hgc" customClass="GroupConversationsInterfaceController"/>
+                <controller identifier="GroupConversationsInterfaceController" id="AgC-eL-Hgc" customClass="GroupConversationsInterfaceController">
+                    <items>
+                        <table alignment="left" id="Jju-2A-Ygb">
+                            <items>
+                                <tableRow identifier="GroupRowView" id="Gs1-e4-ugw" customClass="GroupRowView">
+                                    <group key="rootItem" width="1" alignment="left" id="4XZ-eX-Ds5">
+                                        <items>
+                                            <imageView width="40" height="39" alignment="left" image="group_of_people.png" id="snM-0e-V36"/>
+                                            <label width="1" alignment="left" text="Group Name" minimumScaleFactor="0.5" id="ddQ-Cd-hP8"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="groupImage" destination="snM-0e-V36" id="V9N-ok-FU0"/>
+                                        <outlet property="groupName" destination="ddQ-Cd-hP8" id="0n0-my-DbI"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="groupInterfaceTable" destination="Jju-2A-Ygb" id="mAV-mJ-YEl"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="258" y="345"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
