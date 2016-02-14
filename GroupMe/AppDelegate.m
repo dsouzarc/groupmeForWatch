@@ -30,6 +30,8 @@
         self.groupMeAPIManager = [GroupMeAPIManager getInstance];
     }
     
+    NSLog(@"WE WERE SUMMONED");
+    
     if([userInfo[@"action"] isEqualToString:@"getConversations"]) {
         NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getGroupsRequest] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
@@ -89,13 +91,15 @@
     else if([userInfo[@"action"] isEqualToString:@"getGroupChatMessages"]) {
         NSString *groupChatID = userInfo[@"groupID"];
         
+        NSLog(@"GETTING MESSAGES HERE");
+        
         NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getMessagesForGroup:groupChatID] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
             NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSArray *messages = [responseDict objectForKey:@"response"][@"messages"];
             
             NSMutableArray *shortenedGroups = [NSMutableArray arrayWithArray:messages];
-
+            NSLog(@"GUCCI");
             
             NSDictionary *myResponseDict = @{
                                              @"messages": shortenedGroups,

@@ -21,22 +21,24 @@
     return [constants objectForKey:key];
 }
 
-+ (UIImage*) getDefaultBlankPhoto
++ (void) saveGroupsDataToFile:(NSMutableArray*)jsonData
 {
-    NSString *fileLocation = [[NSBundle mainBundle] pathForResource:@"group_of_people" ofType:@"png"];
-    return [UIImage imageWithContentsOfFile:fileLocation];
+    NSString *filePath = [Constants getDocumentsPathForFileName:@"groups.json"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:jsonData];
+    [data writeToFile:filePath options:NSDataWritingAtomic error:nil];
 }
 
 + (NSMutableArray*) getGroupsDataFromFile
 {
     NSString *filePath = [Constants getDocumentsPathForFileName:@"groups.json"];
-    return [NSMutableArray arrayWithArray:[NSArray arrayWithContentsOfFile:filePath]];
+    NSArray *chats = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    return [[NSMutableArray alloc] initWithArray:chats];
 }
 
-+ (void) saveGroupsDataToFile:(NSArray*)jsonData
++ (UIImage*) getDefaultBlankPhoto
 {
-    NSString *filePath = [Constants getDocumentsPathForFileName:@"groups.json"];
-    [jsonData writeToFile:filePath atomically:YES];
+    NSString *fileLocation = [[NSBundle mainBundle] pathForResource:@"group_of_people" ofType:@"png"];
+    return [UIImage imageWithContentsOfFile:fileLocation];
 }
 
 + (NSString*) getDocumentsPathForFileName:(NSString*)fileName
@@ -60,15 +62,10 @@
 {
     NSString *imageName = [groupID stringByAppendingString:@".png"];
     NSString *filePath = [Constants getDocumentsPathForFileName:imageName];
-    UIImage *groupPhoto = [UIImage imageWithContentsOfFile:filePath];
     
-    if(groupPhoto) {
-        return groupPhoto;
-    }
-    else {
-        //return [self getDefaultBlankPhoto];
-        return nil;
-    }
+    NSData *pngData = [NSData dataWithContentsOfFile:filePath];
+    UIImage *groupPhoto = [UIImage imageWithData:pngData];
+    return groupPhoto;
 }
 
 

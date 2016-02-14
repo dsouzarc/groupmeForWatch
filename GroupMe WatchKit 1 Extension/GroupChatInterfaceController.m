@@ -24,9 +24,11 @@
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
     
-    self.groupChatMessages = [[NSMutableArray alloc] init];
-    
-    self.groupID = context;
+    NSDictionary *params = context;
+    self.groupID = params[@"id"];
+    self.groupChatMessages = params[@"messages"];
+    self.myName = params[@"myName"];
+
 }
 
 - (IBAction)replyButton {
@@ -68,7 +70,7 @@
             [typeOfMessage addObject:@"OtherPersonMessagesView"];
         }
     }
-    
+    NSLog(@"GOINGGGG");
     [self.groupChatTable setRowTypes:typeOfMessage];
     
     for(NSInteger i = 0; i < self.groupChatTable.numberOfRows; i++) {
@@ -96,7 +98,9 @@
 - (void)willActivate {
     [super willActivate];
     
-    NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": self.groupID};
+    [self setupTableWithMessages];
+    
+    /*NSDictionary *params = @{@"action": @"getGroupChatMessages", @"groupID": self.groupID};
     
     NSLog(@"GOING TO GET MESSAGES");
     [WKInterfaceController openParentApplication:params reply:^(NSDictionary *responseDict, NSError *error) {
@@ -104,7 +108,7 @@
         self.myName = responseDict[@"myName"];
         NSLog(@"GOT MESSAGES: %ld", self.groupChatMessages.count);
         [self setupTableWithMessages];
-    }];
+    }];*/
 }
 
 - (void)didDeactivate {

@@ -22,6 +22,7 @@
                                     <connections>
                                         <outlet property="groupImage" destination="snM-0e-V36" id="V9N-ok-FU0"/>
                                         <outlet property="groupName" destination="ddQ-Cd-hP8" id="0n0-my-DbI"/>
+                                        <segue destination="B3H-mL-uSQ" kind="push" id="xfG-Vr-hkS"/>
                                     </connections>
                                 </tableRow>
                             </items>

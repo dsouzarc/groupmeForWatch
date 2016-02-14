@@ -17,7 +17,7 @@
 
 + (void) saveImage:(UIImage*)image forGroupID:(NSString*)groupID;
 
-+ (void) saveGroupsDataToFile:(NSArray*)jsonData;
++ (void) saveGroupsDataToFile:(NSMutableArray*)jsonData;
 + (NSMutableArray*) getGroupsDataFromFile;
 
 @end
