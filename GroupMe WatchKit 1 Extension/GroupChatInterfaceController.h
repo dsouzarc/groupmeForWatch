@@ -11,6 +11,7 @@
 
 #import "MyMessagesView.h"
 #import "OtherPersonMessagesView.h"
+#import "Constants.h"
 
 @interface GroupChatInterfaceController : WKInterfaceController
 

@@ -37,7 +37,7 @@
         <!--GroupChatInterfaceController-->
         <scene sceneID="grJ-RS-bPD">
             <objects>
-                <controller identifier="GroupChatInterfaceController" hidesWhenLoading="NO" id="B3H-mL-uSQ" customClass="GroupChatInterfaceController">
+                <controller identifier="GroupChatInterfaceController" id="B3H-mL-uSQ" customClass="GroupChatInterfaceController">
                     <items>
                         <button width="1" alignment="left" title="Reply" id="KzG-jY-zPl">
                             <connections>
@@ -47,9 +47,9 @@
                         <table alignment="left" id="JY9-ma-Iba">
                             <items>
                                 <tableRow identifier="MyMessagesView" id="xQg-AG-JqL" customClass="MyMessagesView">
-                                    <group key="rootItem" width="1" alignment="left" id="Vgb-wY-YJl">
+                                    <group key="rootItem" width="1" height="47.5" alignment="left" id="Vgb-wY-YJl">
                                         <items>
-                                            <label width="1" alignment="left" text="My message" textAlignment="right" numberOfLines="0" id="6i3-EF-8JH">
+                                            <label width="1" height="46.5" alignment="left" text="My message" textAlignment="right" numberOfLines="0" id="6i3-EF-8JH">
                                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </label>
                                         </items>
@@ -59,9 +59,9 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="OtherPersonMessagesView" id="eGq-pb-2fJ" customClass="OtherPersonMessagesView">
-                                    <group key="rootItem" width="1" alignment="left" id="azb-Jt-Wn7">
+                                    <group key="rootItem" width="1" height="48.5" alignment="left" id="azb-Jt-Wn7">
                                         <items>
-                                            <label width="1" alignment="left" text="Other message" numberOfLines="0" id="7UO-77-u3G"/>
+                                            <label width="1" height="46.5" alignment="left" text="Other message" textAlignment="left" numberOfLines="0" id="7UO-77-u3G"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -77,29 +77,6 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="468" y="334"/>
-        </scene>
-        <!--Static Notification Interface Controller-->
-        <scene sceneID="AEw-b0-oYE">
-            <objects>
-                <notificationController id="YCC-NB-fut">
-                    <items>
-                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
-                    </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
-                    <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                    </connections>
-                </notificationController>
-            </objects>
-            <point key="canvasLocation" x="220" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
-            <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="643"/>
         </scene>
     </scenes>
 </document>

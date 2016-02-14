@@ -20,4 +20,6 @@
 + (void) saveGroupsDataToFile:(NSMutableArray*)jsonData;
 + (NSMutableArray*) getGroupsDataFromFile;
 
++ (NSArray*) getQuickReplies;
+
 @end

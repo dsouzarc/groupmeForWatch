@@ -29,9 +29,7 @@
     if(!self.groupMeAPIManager) {
         self.groupMeAPIManager = [GroupMeAPIManager getInstance];
     }
-    
-    NSLog(@"WE WERE SUMMONED");
-    
+
     if([userInfo[@"action"] isEqualToString:@"getConversations"]) {
         NSURLSessionDataTask *getGroupsTask = [[NSURLSession sharedSession] dataTaskWithRequest:[self.groupMeAPIManager getGroupsRequest] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
@@ -111,7 +109,34 @@
         }];
         
         [getGroupsTask resume];
+    }
+    
+    else if([userInfo[@"action"] isEqualToString:@"sendMessage"]) {
+        NSString *groupID = userInfo[@"groupID"];
+        NSString *text = userInfo[@"text"];
+        
+        NSMutableURLRequest *messageRequest = [self.groupMeAPIManager sendMessageInGroup:groupID text:text];
+        
+        NSURLSessionDataTask *sendMessageTask = [[NSURLSession sharedSession] dataTaskWithRequest:messageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if(!error) {
+                NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                
+                NSDictionary *meta = responseDict[@"meta"];
+                NSInteger code = [[meta objectForKey:@"code"] integerValue];
 
+                NSDictionary *myResponseDict = nil;
+                if(code == 201) {
+                    myResponseDict = @{@"sent": [NSNumber numberWithBool:YES]};
+                }
+                else {
+                    myResponseDict = @{@"sent": [NSNumber numberWithBool:NO]};
+                }
+                
+                reply(myResponseDict);
+            }
+        }];
+        
+        [sendMessageTask resume];
     }
 }
 

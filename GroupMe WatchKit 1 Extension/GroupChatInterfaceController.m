@@ -32,30 +32,24 @@
 }
 
 - (IBAction)replyButton {
-   /* NSLog(@"REWPY CLICKED");
-    [self presentTextInputControllerWithSuggestions:@[@"Ok lols", @"Bye"] allowedInputMode:WKTextInputModePlain completion:^(NSArray *results) {
+    
+    [self presentTextInputControllerWithSuggestions:[Constants getQuickReplies] allowedInputMode:WKTextInputModePlain completion:^(NSArray *results) {
         if(results && results.count > 0) {
-            NSString *result = results[0];
+            NSString *text = results[0];
             
-            NSMutableURLRequest *messageRequest = [self.apiManager sendMessageInGroup:self.groupID text:result];
-            
-            NSURLSessionDataTask *sendMessageTask = [[NSURLSession sharedSession] dataTaskWithRequest:messageRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if(!error) {
-                    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                    
-                    //NSDictionary *meta = responseDict[@"meta"];
-                    //NSInteger code = (NSInteger)[meta objectForKey:@"code"];
-                    
-                    NSDictionary *myMessage = @{@"name": self.myName, @"text": result};
-                    [self.groupChatMessages insertObject:myMessage atIndex:0];
-                    //[self setupTableWithMessages:self.groupChatMessages];
-
-                }
-            }];
-            
-            [sendMessageTask resume];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void) {
+                NSDictionary *params = @{@"action": @"sendMessage", @"groupID": self.groupID, @"text": text};
+                
+                [WKInterfaceController openParentApplication:params reply:^(NSDictionary *response, NSError *error) {
+                    if([response[@"sent"] boolValue]) {
+                        NSDictionary *myMessage = @{@"name": self.myName, @"text": text};
+                        [self.groupChatMessages insertObject:myMessage atIndex:0];
+                        [self setupTableWithMessages];
+                    }
+                }];
+            });
         }
-    }];*/
+    }];
 }
 
 - (void) setupTableWithMessages

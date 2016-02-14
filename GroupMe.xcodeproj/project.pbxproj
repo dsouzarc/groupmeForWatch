@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		94482C6D1C701EBD0007AA9F /* GroupChatInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */; };
+		945ED4B21C709794003D494E /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 945ED4B11C709794003D494E /* PushNotificationPayload.apns */; };
+		945ED4B81C709F02003D494E /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945ED4B71C709F02003D494E /* NotificationController.m */; };
 		94BCD3D11C7007E30008F7E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D01C7007E30008F7E8 /* main.m */; };
 		94BCD3D41C7007E30008F7E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D31C7007E30008F7E8 /* AppDelegate.m */; };
 		94BCD3D71C7007E30008F7E8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD3D61C7007E30008F7E8 /* ViewController.m */; };
@@ -19,7 +21,6 @@
 		94BCD4031C7008990008F7E8 /* Constants.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4021C7008980008F7E8 /* Constants.plist */; };
 		94BCD4061C7008CB0008F7E8 /* GroupMeAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */; };
 		94BCD44D1C700C7F0008F7E8 /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */; };
-		94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BCD44F1C700C7F0008F7E8 /* NotificationController.m */; };
 		94BCD4521C700C7F0008F7E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4511C700C7F0008F7E8 /* Assets.xcassets */; };
 		94BCD4571C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */; };
 		94BCD45D1C700C7F0008F7E8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BCD45B1C700C7F0008F7E8 /* Interface.storyboard */; };
@@ -80,6 +81,9 @@
 /* Begin PBXFileReference section */
 		94482C6B1C701EBD0007AA9F /* GroupChatInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChatInterfaceController.h; sourceTree = "<group>"; };
 		94482C6C1C701EBD0007AA9F /* GroupChatInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChatInterfaceController.m; sourceTree = "<group>"; };
+		945ED4B11C709794003D494E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		945ED4B61C709F02003D494E /* NotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
+		945ED4B71C709F02003D494E /* NotificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		94BCD3CC1C7007E30008F7E8 /* GroupMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BCD3D01C7007E30008F7E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94BCD3D21C7007E30008F7E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,11 +104,8 @@
 		94BCD4041C7008CB0008F7E8 /* GroupMeAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMeAPIManager.h; sourceTree = "<group>"; };
 		94BCD4051C7008CB0008F7E8 /* GroupMeAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMeAPIManager.m; sourceTree = "<group>"; };
 		94BCD4471C700C7F0008F7E8 /* GroupMe WatchKit 1 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "GroupMe WatchKit 1 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		94BCD44A1C700C7F0008F7E8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
 		94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
-		94BCD44E1C700C7F0008F7E8 /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
-		94BCD44F1C700C7F0008F7E8 /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
 		94BCD4511C700C7F0008F7E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94BCD4531C700C7F0008F7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94BCD4561C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GroupMe WatchKit 1 App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,8 +179,8 @@
 			children = (
 				94BCD44B1C700C7F0008F7E8 /* InterfaceController.h */,
 				94BCD44C1C700C7F0008F7E8 /* InterfaceController.m */,
-				94BCD44E1C700C7F0008F7E8 /* NotificationController.h */,
-				94BCD44F1C700C7F0008F7E8 /* NotificationController.m */,
+				945ED4B61C709F02003D494E /* NotificationController.h */,
+				945ED4B71C709F02003D494E /* NotificationController.m */,
 			);
 			name = Auxillary;
 			sourceTree = "<group>";
@@ -325,6 +326,7 @@
 				94B5EC031C70614300B2E13E /* Auxillary */,
 				94BCD4511C700C7F0008F7E8 /* Assets.xcassets */,
 				94BCD4531C700C7F0008F7E8 /* Info.plist */,
+				945ED4B11C709794003D494E /* PushNotificationPayload.apns */,
 				94BCD4491C700C7F0008F7E8 /* Supporting Files */,
 			);
 			path = "GroupMe WatchKit 1 Extension";
@@ -333,7 +335,6 @@
 		94BCD4491C700C7F0008F7E8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				94BCD44A1C700C7F0008F7E8 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -526,6 +527,7 @@
 			files = (
 				94BCD4521C700C7F0008F7E8 /* Assets.xcassets in Resources */,
 				94BCD4571C700C7F0008F7E8 /* GroupMe WatchKit 1 App.app in Resources */,
+				945ED4B21C709794003D494E /* PushNotificationPayload.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,8 +579,8 @@
 				94BCD4781C700CF90008F7E8 /* OtherPersonMessagesView.m in Sources */,
 				94482C6D1C701EBD0007AA9F /* GroupChatInterfaceController.m in Sources */,
 				94BCD4761C700CF90008F7E8 /* GroupRowView.m in Sources */,
-				94BCD4501C700C7F0008F7E8 /* NotificationController.m in Sources */,
 				94BCD47B1C700F0F0008F7E8 /* Constants.m in Sources */,
+				945ED4B81C709F02003D494E /* NotificationController.m in Sources */,
 				94BCD44D1C700C7F0008F7E8 /* InterfaceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

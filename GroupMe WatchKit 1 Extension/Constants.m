@@ -78,4 +78,9 @@
     return newImage;
 }
 
++ (NSArray*) getQuickReplies
+{
+    return @[@"Ok", @"I'll text you soon", @"Can't talk now", @"Later", @"Give me a few", @"On my way"];
+}
+
 @end

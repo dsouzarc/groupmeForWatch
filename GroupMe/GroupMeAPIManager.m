@@ -112,7 +112,6 @@ static const NSString *GROUP_URL = @"groups?token=";
     return [GroupMeAPIManager getValueFromConstantsWithKey:@"GroupMeAPIKey"];
 }
 
-
 + (NSString*) getValueFromConstantsWithKey:(NSString*)key
 {
     NSDictionary *constants = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Constants" ofType:@"plist"]];
